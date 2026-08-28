@@ -14,6 +14,10 @@ export const PARAMETRI_2026 = {
     aliquotaAggiuntiva: 0.01,
     sogliaAggiuntiva: 56224,
     massimale: 122295,
+    minimaleGiornaliero: 58.13,
+    // 26 giorni x 12 mesi: convenzione standard per un anno pieno, non un
+    // valore della circolare INPS. E' un'assunzione del modello, non un dato.
+    giorniRetribuiti: 312,
     fonte: {
       rif: 'Circolare INPS n. 6 del 30/01/2026; art. 3-ter D.L. 384/1992',
       url: 'https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.02.lavoratori-dipendenti-limite-minimo-di-retribuzione-giornaliera-2026.html'

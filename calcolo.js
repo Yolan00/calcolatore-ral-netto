@@ -34,8 +34,15 @@ export function imposteAScaglioni(reddito, scaglioni) {
 }
 
 export function contributiInps(ral, p) {
-  const { aliquotaLavoratore, aliquotaAggiuntiva, sogliaAggiuntiva, massimale } = p.contributi;
-  const imponibile = Math.min(ral, massimale);
+  const {
+    aliquotaLavoratore, aliquotaAggiuntiva, sogliaAggiuntiva,
+    massimale, minimaleGiornaliero, giorniRetribuiti
+  } = p.contributi;
+
+  // La base contributiva e' limitata sotto dal minimale e sopra dal massimale:
+  // sotto i ~18.100 EUR i contributi si calcolano comunque sul minimale, non sulla RAL.
+  const minimale = minimaleGiornaliero * giorniRetribuiti;
+  const imponibile = Math.min(Math.max(ral, minimale), massimale);
   const ivs = imponibile * aliquotaLavoratore;
   const aggiuntivo = Math.max(0, imponibile - sogliaAggiuntiva) * aliquotaAggiuntiva;
   return { imponibile, ivs, aggiuntivo, totale: ivs + aggiuntivo };
