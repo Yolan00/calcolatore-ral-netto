@@ -19,7 +19,7 @@ export const PARAMETRI_2026 = {
     // valore della circolare INPS. E' un'assunzione del modello, non un dato.
     giorniRetribuiti: 312,
     fonte: {
-      rif: 'Circolare INPS n. 6 del 30/01/2026; art. 3-ter D.L. 384/1992',
+      rif: 'Circolare INPS n. 6 del 30/01/2026; art. 3-ter D.L. 384/1992, conv. L. 438/1992',
       url: 'https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.02.lavoratori-dipendenti-limite-minimo-di-retribuzione-giornaliera-2026.html'
     }
   },
@@ -47,7 +47,7 @@ export const PARAMETRI_2026 = {
     fascia3: { limite: 50000, base: 1910, ampiezza: 22000 },
     maggiorazione: { importo: 65, redditoMin: 25000, redditoMax: 35000 },
     fonte: {
-      rif: 'Art. 13 co. 1 TUIR e maggiorazione co. 1-bis',
+      rif: 'Art. 13 co. 1 TUIR; la maggiorazione di 65 € sta al co. 1.1',
       url: 'https://www.brocardi.it/testo-unico-imposte-redditi/titolo-i/capo-i/art13.html'
     }
   },
@@ -71,16 +71,16 @@ export const PARAMETRI_2026 = {
       redditoAzzeramento: 40000
     },
     fonte: {
-      rif: 'L. 207/2024 artt. 4-6, resa strutturale dalla L. 199/2025; circolare AdE 4/E del 16/05/2025',
-      url: 'https://www.fiscoetasse.com/new-rassegna-stampa/1178-taglio-cuneo-fiscale-ecco-le-novita-2025.html'
+      rif: 'L. 207/2024 art. 1 co. 4 (somma esente) e co. 6 (ulteriore detrazione), resa strutturale dalla L. 199/2025; circolare AdE 4/E del 16/05/2025',
+      url: 'https://def.finanze.it/DocTribFrontend/getPrassiDetail.do?id=%7BCEEFD3BC-3B00-42D7-AED1-5AFB7C40827E%7D'
     }
   },
 
   // Spetta se l'imposta lorda supera la detrazione art. 13 diminuita di 75 €.
   // Il ramo 15.001–28.000 € della norma non è implementato: richiede che le
-  // detrazioni superino l'imposta lorda, condizione dimostrabilmente mai vera
-  // senza familiari a carico né mutui ante 2021 (le curve si incrociano a
-  // reddito ≈ 13.911 €, sotto il limite di fascia). Vedi README.
+  // detrazioni superino l'imposta lorda, condizione mai vera senza familiari a
+  // carico né mutui ante 2021: la detrazione supera l'imposta lorda solo sotto
+  // 8.500 € di imponibile, dove 0,23 x 8.500 fa esattamente 1.955. Vedi README.
   trattamentoIntegrativo: {
     importo: 1200,
     limiteReddito: 15000,
@@ -93,7 +93,8 @@ export const PARAMETRI_2026 = {
 
   addizionali: {
     // Art. 50 D.Lgs. 446/1997: dovute solo se residua IRPEF dopo le detrazioni.
-    // La soglia governa entrambe le addizionali, per questo sta qui e non dentro una delle due.
+    // La soglia dei 12 € non sta nell'articolo ma nella circolare AdE del 09/01/1998.
+    // Governa entrambe le addizionali, per questo sta qui e non dentro una delle due.
     sogliaMinimaIrpefNetta: 12,
 
     regionale: {
@@ -105,6 +106,8 @@ export const PARAMETRI_2026 = {
         { fino: Infinity, aliquota: 0.0173 }
       ],
       fonte: {
+        // Quattro scaglioni regionali contro i tre nazionali: l'art. 1 co. 649-650
+        // della L. 199/2025 proroga al 2028 la facoltà di mantenere i vecchi scaglioni.
         rif: 'Art. 72 l.r. Lombardia 10/2003, come modificato dalla l.r. 5/2022',
         url: 'https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef'
       }
@@ -117,13 +120,13 @@ export const PARAMETRI_2026 = {
       aliquota: 0.008,
       sogliaEsenzione: 23000,
       fonte: {
-        rif: 'Delibera Comune di Milano n. 46 del 28/09/2020, confermata annualmente',
-        url: 'https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&lista=1&pagina=lombardia.htm&cm=&pr=MI&cc=F205&r=1'
+        rif: 'Comune di Milano, delibera n. 46 del 28/09/2020, confermata annualmente. Registro MEF del federalismo fiscale',
+        url: 'https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef'
       }
     },
 
     fonte: {
-      rif: 'Art. 50 D.Lgs. 446/1997 — regola di incapienza',
+      rif: 'Art. 50 D.Lgs. 446/1997 — regola di incapienza; soglia dei 12 € da circolare AdE del 09/01/1998',
       url: 'https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Addizionale-regionale-allIRPEF/disciplina-del-tributo/'
     }
   },

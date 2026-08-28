@@ -46,7 +46,7 @@ python -m http.server 8000
 npm test
 ```
 
-I test usano il runner integrato di Node (`node --test`), senza dipendenze esterne. Serve Node 18 o superiore.
+I test usano il runner integrato di Node (`node --test`), senza dipendenze esterne. **Serve Node 20 o superiore:** la formattazione degli importi usa `useGrouping: 'always'`, che fa parte di Intl.NumberFormat v3 e arriva con Node 19. Su versioni precedenti non fallisce, formatta diversamente — che è peggio.
 
 ## Struttura
 
@@ -73,16 +73,16 @@ Verifica puntuale, con i riferimenti normativi estesi, in **[`Dati e fonti/param
 |---|---|---|
 | Scaglioni IRPEF | 23% fino a 28.000 · 33% fino a 50.000 · 43% oltre | [Art. 11 TUIR, L. 199/2025](https://www.mef.gov.it/focus/Principali-misure-della-legge-di-bilancio-2026/) |
 | Aliquota INPS lavoratore | 9,19% | [Circolare INPS 6/2026](https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.02.lavoratori-dipendenti-limite-minimo-di-retribuzione-giornaliera-2026.html) |
-| Aliquota aggiuntiva 1% | oltre 56.224 € | Art. 3-ter D.L. 384/1992 |
+| Aliquota aggiuntiva 1% | oltre 56.224 € | Art. 3-ter D.L. 384/1992, conv. L. 438/1992 |
 | Massimale contributivo | 122.295 € | Circolare INPS 6/2026 |
 | Minimale giornaliero | 58,13 € (× 312 gg = 18.136,56 €) | Circolare INPS 6/2026 |
 | Detrazione lavoro dipendente | 1.955 € → 0 oltre 50.000 €, +65 € fra 25.000 e 35.000 | [Art. 13 TUIR](https://www.brocardi.it/testo-unico-imposte-redditi/titolo-i/capo-i/art13.html) |
-| Somma esente (cuneo) | 7,1% · 5,3% · 4,8% fino a 20.000 €, max 960 € | [L. 207/2024, circ. AdE 4/E 2025](https://www.fiscoetasse.com/new-rassegna-stampa/1178-taglio-cuneo-fiscale-ecco-le-novita-2025.html) |
-| Ulteriore detrazione (cuneo) | 1.000 € fra 20.000 e 32.000, azzerata a 40.000 | L. 207/2024 |
+| Somma esente (cuneo) | 7,1% · 5,3% · 4,8% fino a 20.000 €, max 960 € | [L. 207/2024 art. 1 co. 4; circ. AdE 4/E 2025](https://def.finanze.it/DocTribFrontend/getPrassiDetail.do?id=%7BCEEFD3BC-3B00-42D7-AED1-5AFB7C40827E%7D) |
+| Ulteriore detrazione (cuneo) | 1.000 € fra 20.000 e 32.000, azzerata a 40.000 | L. 207/2024 art. 1 co. 6 |
 | Trattamento integrativo | 1.200 € fino a 15.000 € di imponibile | [Art. 1 D.L. 3/2020](https://fiscomania.com/trattamento-integrativo-come-funziona/) |
 | Addizionale regionale | Lombardia, 1,23% · 1,58% · 1,72% · 1,73% a scaglioni | [Art. 72 l.r. 10/2003](https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef) |
-| Addizionale comunale | Milano, 0,8% con esenzione fino a 23.000 € | [Delibera 46/2020, portale MEF](https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&lista=1&pagina=lombardia.htm&cm=&pr=MI&cc=F205&r=1) |
-| Soglia di incapienza addizionali | IRPEF netta > 12 € | [Art. 50 D.Lgs. 446/1997](https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Addizionale-regionale-allIRPEF/disciplina-del-tributo/) |
+| Addizionale comunale | Milano, 0,8% con esenzione fino a 23.000 € | [Comune di Milano, delibera 46/2020](https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef) |
+| Soglia di incapienza addizionali | IRPEF netta > 12 € | [Art. 50 D.Lgs. 446/1997](https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Addizionale-regionale-allIRPEF/disciplina-del-tributo/); soglia da circolare AdE 09/01/1998 |
 
 Attenzione alle fonti obsolete: molte guide online riportano ancora quattro scaglioni con il 25%, o la seconda aliquota al 35%, o il taglio del cuneo come esonero contributivo. Sono regimi superati. L'elenco delle trappole note è in appendice al documento di ricerca.
 
@@ -126,7 +126,7 @@ Dalla consegna: tempo indeterminato, residenza a Milano, nessuna agevolazione pa
 
 ## Limiti noti
 
-- **Secondo ramo del trattamento integrativo non implementato.** La norma prevede una spettanza parziale fra 15.001 e 28.000 € quando le detrazioni superano l'imposta lorda. Sotto le assunzioni di questo modello la condizione non si verifica mai: le due curve si incrociano a un imponibile di ~13.911 €, cioè *sotto* il limite di fascia, e da lì in poi l'imposta lorda resta stabilmente superiore. Il ramo diventa raggiungibile solo introducendo familiari a carico o mutui ante 2021. Non è codice mancante: è codice dimostrabilmente irraggiungibile.
+- **Secondo ramo del trattamento integrativo non implementato.** La norma prevede una spettanza parziale fra 15.001 e 28.000 € quando le detrazioni superano l'imposta lorda. Sotto le assunzioni di questo modello la condizione non si verifica mai. La detrazione art. 13 vale 1.955 € fino a 15.000 € di imponibile, mentre l'imposta lorda cresce al 23%: le due si eguagliano a **8.500 € esatti**, dove `0,23 × 8.500 = 1.955`. Sopra quella soglia l'imposta lorda resta sempre superiore, e il divario si allarga. Il ramo parte da 15.001 €, cioè quasi settemila euro oltre l'unico punto in cui la sua condizione potrebbe verificarsi. Diventa raggiungibile solo introducendo familiari a carico o mutui ante 2021. Non è codice mancante: è codice dimostrabilmente irraggiungibile.
 - **Minimo garantito della detrazione (690 €, 1.380 € a tempo determinato) non implementato.** Rileva solo per rapporti di durata inferiore all'anno.
 - **Clausola di sterilizzazione oltre 200.000 € non modellata.** La L. 199/2025 riduce di 440 € le detrazioni per oneri al 19% sopra tale reddito. Il modello non prevede oneri detraibili, quindi la clausola non ha su cosa agire.
 - **RAL troppo basse vengono rifiutate.** Se i contributi dovuti sul minimale superano la retribuzione, l'imponibile sarebbe negativo. Il calcolatore rifiuta con una spiegazione invece di restituire uno zero plausibile e falso.
@@ -158,4 +158,4 @@ La struttura è pensata perché l'aggiornamento tocchi un file solo.
 3. Eseguire `npm test`. Il test di coerenza interna segnala subito se i divisori delle formule non corrispondono più ai limiti di fascia.
 4. Ricalcolare a mano gli attesi dei casi numerici. È il passaggio più lento ed è deliberatamente così: sono la prova documentale che i nuovi valori sono stati verificati e non solo trascritti.
 
-Punti da ricontrollare ogni anno, perché cambiano più spesso degli altri: massimale e minimale INPS, prima fascia di retribuzione pensionabile, soglia di esenzione dell'addizionale comunale, e se le Regioni mantengano i propri scaglioni storici — la facoltà è prorogata fino al 2028.
+Punti da ricontrollare ogni anno, perché cambiano più spesso degli altri: massimale e minimale INPS, prima fascia di retribuzione pensionabile, soglia di esenzione dell'addizionale comunale, e se le Regioni mantengano i propri scaglioni storici — l'art. 1 commi 649-650 della L. 199/2025 proroga tale facoltà fino al 2028, ed è il motivo per cui la Lombardia ha quattro scaglioni mentre lo Stato ne ha tre.
