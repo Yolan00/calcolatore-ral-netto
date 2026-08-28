@@ -158,6 +158,33 @@ tr.nulla th, tr.nulla .importo, tr.nulla .incidenza { color: var(--tenue); }
   color: var(--trattenuta);
 }
 
+/* ---- assunzioni ---- */
+
+#assunzioni {
+  margin-top: calc(var(--spazio) * 2.5);
+  padding: 0.75rem var(--spazio);
+  border: 1px solid var(--bordo);
+  border-radius: 8px;
+  background: var(--fascia);
+  font-size: 0.9rem;
+}
+
+#assunzioni summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accento);
+}
+
+#assunzioni[open] summary { margin-bottom: 0.75rem; }
+
+.assunzioni-intro { margin: 0 0 0.75rem; color: var(--tenue); }
+
+#assunzioni ul { margin: 0; padding-left: 1.2rem; }
+
+#assunzioni li { margin-bottom: 0.5rem; color: var(--tenue); }
+
+#assunzioni li:last-child { margin-bottom: 0; }
+
 footer {
   margin-top: calc(var(--spazio) * 3);
   padding-top: var(--spazio);

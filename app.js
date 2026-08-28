@@ -70,6 +70,23 @@ const SEZIONI = [
   }
 ];
 
+// Le assunzioni dichiarate in pagina. Sono funzioni dei parametri, non testo
+// fisso: le voci che citano un valore fiscale lo leggono da dove lo legge il
+// motore, e non possono raccontare qualcosa di diverso da quello che è stato
+// calcolato. Il README ne dà la versione estesa con le motivazioni.
+const ASSUNZIONI = [
+  () => 'Contratto a tempo indeterminato, a tempo pieno per l’intero anno: le detrazioni non sono ridotte pro rata e il part-time non è rappresentato.',
+  (p) => `Residenza a ${p.addizionali.comunale.nome}, regione ${p.addizionali.regionale.nome}.`,
+  (p) => `Azienda fino a 15 dipendenti, quindi aliquota INPS a carico del lavoratore del ${percento(p.contributi.aliquotaLavoratore, 2)}. Oltre i 15 dipendenti sale al 9,49% e il netto è leggermente inferiore.`,
+  (p) => `Iscritto all’INPS dopo il 31/12/1995: solo per questi lavoratori vale il massimale contributivo di ${euro(p.contributi.massimale)}.`,
+  (p) => `Contributi calcolati su ${p.contributi.giorniRetribuiti} giorni retribuiti l’anno, convenzione standard per un rapporto a tempo pieno.`,
+  () => 'Nessun familiare a carico e nessun onere deducibile o detraibile oltre a quelli automatici.',
+  () => 'Nessun fondo pensione, fringe benefit, premio di risultato, straordinario o bonus.',
+  () => 'TFR escluso dal netto: matura ma non viene erogato in busta.',
+  (p) => `Mensilità secondo il ${p.contratto.nome}. Tredicesima e quattordicesima sono trattate come le altre mensilità: nella realtà la tredicesima è tassata senza le detrazioni mensili, quindi la singola busta differisce mentre il totale annuo resta corretto.`,
+  () => 'Addizionali imputate all’anno in corso; nella realtà si versano l’anno successivo, a rate.'
+];
+
 function elemento(tag, testo, classe) {
   const nodo = document.createElement(tag);
   if (testo !== undefined) nodo.textContent = testo;
@@ -173,5 +190,10 @@ form.addEventListener('submit', (evento) => {
   }
 });
 
+function popolaAssunzioni(lista, p) {
+  lista.replaceChildren(...ASSUNZIONI.map((voce) => elemento('li', voce(p))));
+}
+
 popolaMensilita(form.elements.mensilita, PARAMETRI_2026.contratto);
+popolaAssunzioni(document.querySelector('#assunzioni ul'), PARAMETRI_2026);
 document.querySelector('#aiuto-ral').textContent = `Es. ${ESEMPI_FORMATO}`;
