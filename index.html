@@ -9,7 +9,24 @@
   <main>
     <h1>Calcolatore RAL → Netto</h1>
     <p>Anno d'imposta 2026 — dipendente privato a tempo indeterminato, residente a Milano (Lombardia).</p>
-    <p><small>Step 1 di 10: verifica della catena di deploy. Il calcolatore arriva ai passi successivi.</small></p>
+
+    <form id="calcolatore">
+      <p>
+        <label for="ral">RAL — retribuzione annua lorda (€)</label><br>
+        <input type="number" id="ral" name="ral" min="1" step="any" required>
+      </p>
+      <p>
+        <label for="mensilita">Mensilità</label><br>
+        <select id="mensilita" name="mensilita"></select>
+      </p>
+      <button type="submit">Calcola</button>
+    </form>
+
+    <section id="risultato" aria-live="polite"></section>
+
+    <p><small>Step 6 di 10: collegamento fra form e motore. Il dettaglio impaginato arriva al passo successivo.</small></p>
   </main>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
