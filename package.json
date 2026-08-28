@@ -1,0 +1,10 @@
+{
+  "name": "calcolatore-ral-netto",
+  "version": "1.0.0",
+  "description": "Calcolatore da RAL a netto per lavoratori dipendenti, anno d'imposta 2026",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
