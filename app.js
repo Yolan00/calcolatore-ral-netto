@@ -4,16 +4,10 @@
 
 import { PARAMETRI_2026 } from './parametri-2026.js';
 import { calcolaNetto, incidenzaSuRal } from './calcolo.js';
+import { euro, percento, leggiImporto } from './formato.js';
 
 const form = document.querySelector('#calcolatore');
 const contenitore = document.querySelector('#risultato');
-
-// useGrouping esplicito: di default l'italiano usa il raggruppamento "min2" e
-// non separa le migliaia sotto i 10.000, dando "3216,50 €" accanto a "26.032,22 €".
-const euro = (n) =>
-  n.toLocaleString('it-IT', { style: 'currency', currency: 'EUR', useGrouping: 'always' });
-const percento = (n, decimali = 1) =>
-  n.toLocaleString('it-IT', { style: 'percent', minimumFractionDigits: decimali, maximumFractionDigits: decimali });
 
 // Il segno indica sempre l'effetto sul netto, non sulla voce che precede:
 // le detrazioni riducono l'imposta e quindi aumentano il netto.
@@ -165,10 +159,14 @@ form.addEventListener('submit', (evento) => {
   evento.preventDefault();
   const { ral, mensilita } = form.elements;
   try {
-    const risultato = calcolaNetto(Number(ral.value), PARAMETRI_2026, Number(mensilita.value));
+    const importo = leggiImporto(ral.value);
+    const risultato = calcolaNetto(importo, PARAMETRI_2026, Number(mensilita.value));
+    ral.removeAttribute('aria-invalid');
     contenitore.replaceChildren(rendiRisultato(risultato, PARAMETRI_2026));
   } catch (errore) {
+    ral.setAttribute('aria-invalid', 'true');
     contenitore.replaceChildren(rendiErrore(errore.message));
+    ral.focus();
   }
 });
 

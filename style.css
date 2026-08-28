@@ -56,6 +56,10 @@ input, select, button {
 
 input { width: 11rem; }
 
+input[aria-invalid="true"] { border-color: var(--trattenuta); }
+
+form small { display: block; margin-top: 0.25rem; font-size: 0.75rem; color: var(--tenue); }
+
 button {
   background: var(--accento);
   border-color: var(--accento);

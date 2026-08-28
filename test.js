@@ -8,6 +8,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PARAMETRI_2026 as P } from './parametri-2026.js';
 import { calcolaNetto, imposteAScaglioni, RAL_MASSIMA } from './calcolo.js';
+import { leggiImporto } from './formato.js';
 
 // Un centesimo: gli attesi sono scritti con due decimali, il motore lavora in
 // virgola mobile piena e non arrotonda mai prima della visualizzazione.
@@ -132,6 +133,56 @@ test('input non validi: nessun calcolo, errore tipizzato', () => {
   for (const v of ['35000', null, undefined, NaN, Infinity, {}]) {
     assert.throws(() => calcolaNetto(v, P), TypeError, `RAL ${String(v)}`);
   }
+});
+
+test('sotto il minimale la RAL puo non bastare a pagare i contributi', () => {
+  // I contributi sul minimale valgono 1.666,75 EUR: sotto quella soglia
+  // l'imponibile sarebbe negativo e il netto pure.
+  for (const ral of [1, 100, 1000, 1666]) {
+    assert.throws(() => calcolaNetto(ral, P), RangeError, `RAL ${ral}`);
+  }
+  assert.ok(calcolaNetto(1700, P).redditoComplessivo > 0, 'RAL 1.700 resta calcolabile');
+});
+
+test('nessun valore non finito su tutto il dominio ammesso', () => {
+  const passo = 250;
+  for (let ral = 1750; ral <= 200000; ral += passo) {
+    const r = calcolaNetto(ral, P);
+    for (const [chiave, valore] of Object.entries(r)) {
+      const numeri = typeof valore === 'object' ? Object.values(valore) : [valore];
+      for (const n of numeri) {
+        assert.ok(Number.isFinite(n), `RAL ${ral}, voce ${chiave}: valore non finito (${n})`);
+        assert.ok(n >= 0, `RAL ${ral}, voce ${chiave}: valore negativo (${n})`);
+      }
+    }
+  }
+});
+
+test('lettura dell importo nel formato italiano', () => {
+  const casi = {
+    '35000': 35000,
+    '35.000': 35000,
+    '1.234.567': 1234567,
+    '1.234,56': 1234.56,
+    '35000,50': 35000.5,
+    // Punto seguito da due cifre: separatore decimale, non delle migliaia.
+    '35000.50': 35000.5,
+    ' 35 000 ': 35000
+  };
+  for (const [testo, atteso] of Object.entries(casi)) {
+    assert.equal(leggiImporto(testo), atteso, `lettura di "${testo}"`);
+  }
+
+  for (const vuoto of ['', '   ']) {
+    assert.throws(() => leggiImporto(vuoto), RangeError, `stringa vuota "${vuoto}"`);
+  }
+  for (const invalido of ['abc', '3,5,6', '12€', '--5', '1,2.3']) {
+    assert.throws(() => leggiImporto(invalido), TypeError, `input "${invalido}"`);
+  }
+  // Il segno negativo supera il formato e viene respinto dal motore, con il
+  // messaggio giusto: e' un problema di dominio, non di sintassi.
+  assert.equal(leggiImporto('-5'), -5);
+  assert.throws(() => calcolaNetto(leggiImporto('-5'), P), RangeError);
 });
 
 test('coerenza interna dei parametri', () => {

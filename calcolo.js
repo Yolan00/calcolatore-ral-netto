@@ -16,7 +16,7 @@ function validaRal(ral) {
     throw new RangeError('La RAL deve essere maggiore di zero.');
   }
   if (ral > RAL_MASSIMA) {
-    throw new RangeError(`La RAL supera il limite gestito di ${RAL_MASSIMA} €.`);
+    throw new RangeError(`La RAL supera il limite gestito di ${RAL_MASSIMA.toLocaleString('it-IT')} €.`);
   }
 }
 
@@ -113,6 +113,18 @@ export function calcolaNetto(ral, p, mensilita = p.contratto.mensilita) {
 
   const contributi = contributiInps(ral, p);
   const redditoComplessivo = ral - contributi.totale;
+
+  // Sotto il minimale i contributi sono una costante e possono superare la RAL,
+  // producendo un imponibile negativo. Non e' un caso da correggere ma da
+  // rifiutare: il modello assume un rapporto a tempo pieno per l'intero anno,
+  // e una retribuzione cosi' bassa contraddice quell'assunzione.
+  if (redditoComplessivo <= 0) {
+    throw new RangeError(
+      'I contributi dovuti sul minimale superano la RAL indicata. Il modello assume ' +
+      'un rapporto a tempo pieno per l\'intero anno: per rapporti parziali il minimale ' +
+      'andrebbe riproporzionato ai giorni effettivi.'
+    );
+  }
 
   const irpefLorda = imposteAScaglioni(redditoComplessivo, p.irpef.scaglioni);
   const detrazione = detrazioneLavoroDipendente(redditoComplessivo, p);
