@@ -102,6 +102,12 @@ export function addizionaliLocali(reddito, irpefNetta, p) {
   };
 }
 
+// L'incidenza di una voce sul lordo e' un numero derivato dal dominio, non una
+// scelta di presentazione: sta qui perche' app.js non deve contenere aritmetica.
+export function incidenzaSuRal(importo, ral) {
+  return importo / ral;
+}
+
 export function calcolaNetto(ral, p, mensilita = p.contratto.mensilita) {
   validaRal(ral);
 

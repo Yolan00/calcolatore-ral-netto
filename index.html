@@ -4,27 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calcolatore RAL → Netto — 2026</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
     <h1>Calcolatore RAL → Netto</h1>
-    <p>Anno d'imposta 2026 — dipendente privato a tempo indeterminato, residente a Milano (Lombardia).</p>
+    <p class="sottotitolo">
+      Anno d'imposta 2026 — dipendente privato a tempo indeterminato, residente a Milano (Lombardia).
+    </p>
 
     <form id="calcolatore">
       <p>
-        <label for="ral">RAL — retribuzione annua lorda (€)</label><br>
+        <label for="ral">RAL — retribuzione annua lorda (€)</label>
         <input type="number" id="ral" name="ral" min="1" step="any" required>
       </p>
       <p>
-        <label for="mensilita">Mensilità</label><br>
+        <label for="mensilita">Mensilità</label>
         <select id="mensilita" name="mensilita"></select>
       </p>
-      <button type="submit">Calcola</button>
+      <p><button type="submit">Calcola</button></p>
     </form>
 
     <section id="risultato" aria-live="polite"></section>
 
-    <p><small>Step 6 di 10: collegamento fra form e motore. Il dettaglio impaginato arriva al passo successivo.</small></p>
+    <footer>
+      <p>
+        Prototipo. Parametri, fonti normative e limiti noti nel
+        <a href="https://github.com/Yolan00/calcolatore-ral-netto">repository</a>.
+      </p>
+    </footer>
   </main>
 
   <script type="module" src="app.js"></script>

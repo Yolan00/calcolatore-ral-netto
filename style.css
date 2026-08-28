@@ -1,0 +1,172 @@
+/* Colori e spaziature come custom properties: cambiare tema o densità non
+   richiede di rincorrere i valori dentro le regole. */
+:root {
+  --testo: #1b1f24;
+  --tenue: #656d76;
+  --bordo: #d8dee4;
+  --sfondo: #ffffff;
+  --fascia: #f6f8fa;
+  --trattenuta: #a03030;
+  --aggiunta: #1a6b3c;
+  --accento: #0b4f8a;
+  --spazio: 1rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: calc(var(--spazio) * 2) var(--spazio);
+  background: var(--sfondo);
+  color: var(--testo);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main { max-width: 44rem; margin: 0 auto; }
+
+h1 { font-size: 1.6rem; margin: 0 0 0.25rem; }
+
+.sottotitolo { color: var(--tenue); margin: 0 0 calc(var(--spazio) * 2); }
+
+/* ---- form ---- */
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spazio);
+  align-items: end;
+  padding: var(--spazio);
+  border: 1px solid var(--bordo);
+  border-radius: 8px;
+  background: var(--fascia);
+}
+
+form p { margin: 0; }
+
+label { display: block; font-size: 0.85rem; color: var(--tenue); margin-bottom: 0.25rem; }
+
+input, select, button {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--bordo);
+  border-radius: 6px;
+  background: var(--sfondo);
+  color: inherit;
+}
+
+input { width: 11rem; }
+
+button {
+  background: var(--accento);
+  border-color: var(--accento);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover { filter: brightness(1.1); }
+
+:focus-visible { outline: 2px solid var(--accento); outline-offset: 2px; }
+
+/* ---- riepilogo ---- */
+
+.riepilogo {
+  margin-top: calc(var(--spazio) * 2);
+  padding: var(--spazio);
+  border: 1px solid var(--bordo);
+  border-left: 4px solid var(--accento);
+  border-radius: 8px;
+}
+
+.riepilogo p { margin: 0; }
+.riepilogo-voce { font-size: 0.85rem; color: var(--tenue); text-transform: uppercase; letter-spacing: 0.04em; }
+.riepilogo-cifra { font-size: 2rem; font-weight: 600; line-height: 1.2; }
+.riepilogo-mensile { font-size: 1.1rem; }
+.riepilogo-nota { margin-top: 0.5rem !important; font-size: 0.85rem; color: var(--tenue); }
+
+/* ---- tabella del dettaglio ---- */
+
+table {
+  width: 100%;
+  margin-top: calc(var(--spazio) * 1.5);
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tenue);
+  border-bottom: 1px solid var(--bordo);
+}
+
+th { text-align: left; font-weight: 400; }
+
+th, td { padding: 0.4rem 0.5rem; }
+
+.importo, .incidenza { text-align: right; white-space: nowrap; }
+thead th:not(:first-child) { text-align: right; }
+
+.incidenza { color: var(--tenue); width: 5rem; }
+
+tr.sezione th {
+  padding-top: calc(var(--spazio) * 1.2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accento);
+}
+
+tr.trattenuta .importo { color: var(--trattenuta); }
+tr.sconto .importo, tr.aggiunta .importo { color: var(--aggiunta); }
+
+/* I due totali parziali che raccontano l'esercizio: l'imponibile non e' la RAL,
+   e il trattenuto non e' solo l'IRPEF. */
+tr.subtotale th, tr.subtotale .importo, tr.subtotale .incidenza {
+  font-weight: 600;
+  background: var(--fascia);
+  border-top: 1px solid var(--bordo);
+  border-bottom: 1px solid var(--bordo);
+}
+
+tr.lordo th, tr.lordo .importo { font-weight: 600; }
+
+/* Una misura che non spetta resta visibile ma in secondo piano: sapere che
+   esiste e non si applica e' informazione, nasconderla no. */
+tr.nulla th, tr.nulla .importo, tr.nulla .incidenza { color: var(--tenue); }
+
+/* ---- note ed errori ---- */
+
+.nota {
+  margin-top: var(--spazio);
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--bordo);
+  font-size: 0.9rem;
+  color: var(--tenue);
+}
+
+.errore {
+  margin-top: calc(var(--spazio) * 2);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--trattenuta);
+  border-radius: 6px;
+  color: var(--trattenuta);
+}
+
+footer {
+  margin-top: calc(var(--spazio) * 3);
+  padding-top: var(--spazio);
+  border-top: 1px solid var(--bordo);
+  font-size: 0.85rem;
+  color: var(--tenue);
+}
+
+footer a { color: var(--accento); }
+
+@media (max-width: 30rem) {
+  input { width: 100%; }
+  form p { flex: 1 1 100%; }
+  .riepilogo-cifra { font-size: 1.6rem; }
+  th, td { padding: 0.35rem 0.25rem; }
+}
