@@ -1,7 +1,5 @@
-// Lettura e scrittura dei numeri secondo la convenzione italiana.
-// Nessun DOM e nessuna aritmetica fiscale: sta in un modulo a parte perche'
-// la lettura dell'importo e' la logica piu' insidiosa del livello di presentazione
-// ed e' l'unica che meriti dei test propri.
+// Lettura e scrittura dei numeri secondo la convenzione italiana. Nessun DOM:
+// e' in un modulo a parte perche' leggiImporto sia testabile.
 
 // Gli esempi compaiono sia nel suggerimento sotto il campo sia nel messaggio
 // d'errore: definiti una volta sola perche' non possano divergere.
@@ -20,10 +18,8 @@ export const percento = (n, decimali = 1) =>
     maximumFractionDigits: decimali
   });
 
-// Le tre forme accettate, ciascuna riconosciuta prima di essere normalizzata.
-// Validare la forma d'origine invece di ripulire e sperare evita di accettare
-// stringhe malformate come "1,2.3", che una semplice sostituzione leggerebbe
-// come 1,23 restituendo un numero plausibile e sbagliato.
+// Ogni forma e' riconosciuta prima di essere normalizzata. Ripulire la stringa
+// senza validarla accetterebbe "1,2.3" leggendolo come 1,23: plausibile e falso.
 const GRUPPI = /^-?\d{1,3}(\.\d{3})+(,\d+)?$/;   // 35.000   1.234.567   1.234,56
 const VIRGOLA = /^-?\d+(,\d+)?$/;                // 35000    35000,50
 const PUNTO = /^-?\d+\.\d{1,2}$/;                // 35000.50 (copiato da locale inglese)

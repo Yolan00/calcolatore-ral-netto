@@ -1,9 +1,8 @@
 # Parametri fiscali e contributivi 2026 — fonti verificate
 
-Anno d'imposta **2026**. Caso modellato: dipendente privato, tempo indeterminato, residente a Milano (Lombardia).
-Verifica effettuata il **28/08/2026**.
+Anno d'imposta **2026**. Caso modellato: dipendente privato, tempo indeterminato, residente a Milano (Lombardia). Verifica effettuata il **28/08/2026**.
 
-Il corpo del documento contiene **solo norme e valori vigenti**. Le trappole note (valori superati, misure abrogate) sono confinate nell'appendice finale.
+Il corpo contiene solo norme e valori vigenti. Le trappole note sono in appendice.
 
 ---
 
@@ -15,36 +14,38 @@ Il corpo del documento contiene **solo norme e valori vigenti**. Le trappole not
 | 28.001 – 50.000 € | **33%** |
 | oltre 50.000 € | 43% |
 
-- Base: art. 11 co. 1 TUIR, modificato dall'art. 1 della **L. 30 dicembre 2025, n. 199** (Legge di Bilancio 2026). Numero e data confermati.
-- La seconda aliquota scende dal 35% al 33%, in vigore **dal periodo d'imposta 2026**. Beneficio massimo ~440 €/anno.
-- Per redditi complessivi **oltre 200.000 €** le detrazioni per oneri al 19% sono ridotte forfetariamente di 440 €, per sterilizzare il beneficio del taglio. Vigente ma **irrilevante nel nostro modello**, che non prevede oneri detraibili: da citare solo come limite dichiarato.
-- Fonti: [MEF – Principali misure LdB 2026](https://www.mef.gov.it/focus/Principali-misure-della-legge-di-bilancio-2026/) · [Fisco Oggi – LdB 2026 approvata](https://www.fiscooggi.it/portale/-/legge-di-bilancio-2026-approvata-e-ufficiale) · [Confindustria Ancona – L. 199/2025](https://www.confindustria.an.it/legge-di-bilancio-2026-principali-novita-fiscali-l-n-199-2025/) · [MySolution – taglio detrazioni oltre 200k](https://www.mysolution.it/fisco/informazioni/news/2026/05/12/riordino-delle-detrazioni-taglio-forfettario-di-440-euro-irrilevante-nel-7302026/)
+Art. 11 co. 1 TUIR, modificato dalla **L. 30 dicembre 2025, n. 199**. La seconda aliquota scende dal 35% al 33% dal periodo d'imposta 2026; beneficio massimo ~440 €/anno.
+
+Oltre 200.000 € di reddito complessivo le detrazioni per oneri al 19% sono ridotte di 440 €, a sterilizzare il beneficio. Vigente ma irrilevante qui: il modello non prevede oneri detraibili.
+
+Fonti: [MEF](https://www.mef.gov.it/focus/Principali-misure-della-legge-di-bilancio-2026/) · [Fisco Oggi](https://www.fiscooggi.it/portale/-/legge-di-bilancio-2026-approvata-e-ufficiale) · [MySolution — taglio oltre 200k](https://www.mysolution.it/fisco/informazioni/news/2026/05/12/riordino-delle-detrazioni-taglio-forfettario-di-440-euro-irrilevante-nel-7302026/)
 
 ---
 
 ## 2. Contributi INPS — dipendente privato, FPLD
 
-Fonte primaria: **circolare INPS n. 6 del 30 gennaio 2026** (valori in vigore dal 1° gennaio 2026).
+Fonte primaria: **circolare INPS n. 6 del 30 gennaio 2026**.
 
 | Voce | Valore 2026 |
 |---|---|
 | Aliquota IVS complessiva | 33% (**9,19% lavoratore** + 23,81% datore) |
-| Prima fascia 2025, per riscontro | 55.448 € — la rivalutazione +1,4% dà 56.224 €, che conferma entrambi i valori |
-| Aliquota aggiuntiva 1% (art. 3-ter D.L. 384/1992, conv. L. 438/1992) | sulla quota eccedente la 1ª fascia, per i regimi con aliquota a carico del lavoratore inferiore al 10% |
+| Aliquota aggiuntiva 1% | sulla quota eccedente la 1ª fascia, per regimi con aliquota lavoratore < 10% (art. 3-ter D.L. 384/1992, conv. L. 438/1992) |
 | Prima fascia di retribuzione pensionabile | **56.224 €/anno** (4.685 €/mese) |
-| Massimale annuo base contributiva e pensionabile | **122.295 €** (iscritti post 31/12/1995) |
+| Massimale base contributiva e pensionabile | **122.295 €** (iscritti post 31/12/1995) |
 | Minimale di retribuzione giornaliera | **58,13 €** (9,5% del trattamento minimo FPLD, 611,85 €/mese) |
-| Rivalutazione ISTAT applicata | +1,4% (variazione 2025) |
+| Rivalutazione ISTAT | +1,4% |
 
-**9,19% vs 9,49%** — l'aliquota a carico del lavoratore sale a **9,49% nelle aziende oltre i 15 dipendenti**, per lo 0,30% destinato al FIS. Il dettaglio varia per settore e dimensione (FIS / CIGS): la scelta del 9,19% è una semplificazione da dichiarare, non un errore.
+Riscontro incrociato: la prima fascia 2025 vale 55.448 €, e 55.448 × 1,014 = 56.224. La rivalutazione conferma entrambi i valori.
 
-- Fonti: [INPS – Limite minimo di retribuzione giornaliera 2026](https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.02.lavoratori-dipendenti-limite-minimo-di-retribuzione-giornaliera-2026.html) · [Consulenti del Lavoro – Contributi 2026](https://www.consulentidellavoro.it/home/storico-articoli/19330-contributi-2026-aggiornati-minimali-e-massimali) · [GEPS – circ. 6/26](https://www.geps.it/minimale-e-massimale-retributivi-2026-i-nuovi-valori-aggiornati-inps-circ-n-6-26-11055/) · [INPS – Aliquote contributive](https://www.inps.it/it/it/inps-comunica/diritti-e-obblighi-in-materia-di-sicurezza-sociale-nell-unione-e/per-le-imprese/aliquote-contributive.html)
+**9,19% vs 9,49%:** l'aliquota sale a 9,49% oltre i 15 dipendenti, per lo 0,30% destinato al FIS. Il dettaglio varia per settore e dimensione (FIS / CIGS): usare 9,19% è una semplificazione da dichiarare, non un errore.
+
+Fonti: [INPS — minimali 2026](https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.02.lavoratori-dipendenti-limite-minimo-di-retribuzione-giornaliera-2026.html) · [Consulenti del Lavoro](https://www.consulentidellavoro.it/home/storico-articoli/19330-contributi-2026-aggiornati-minimali-e-massimali) · [INPS — aliquote contributive](https://www.inps.it/it/it/inps-comunica/diritti-e-obblighi-in-materia-di-sicurezza-sociale-nell-unione-e/per-le-imprese/aliquote-contributive.html)
 
 ---
 
 ## 3. Detrazione per lavoro dipendente — art. 13 TUIR
 
-Si calcola sul **reddito complessivo** (= RAL − contributi, vedi §7).
+Si calcola sul reddito complessivo (= RAL − contributi, vedi §6).
 
 | Reddito complessivo | Detrazione |
 |---|---|
@@ -53,25 +54,22 @@ Si calcola sul **reddito complessivo** (= RAL − contributi, vedi §7).
 | 28.001 – 50.000 € | 1.910 × (50.000 − R) / 22.000 |
 | oltre 50.000 € | 0 |
 
-- **Maggiorazione 65 €** per reddito complessivo **superiore a 25.000 € ma non a 35.000 €**. Sta al **comma 1.1** dell'art. 13 — non al co. 1-bis, come riportato in una prima versione di questo documento. La formulazione *"superiore a … ma non a …"* è quella della norma, e giustifica il confronto stretto sulla soglia inferiore e inclusivo su quella superiore adottato nel motore.
-- **Minimo garantito 690 €** (1.380 € per contratti a tempo determinato). Rilevante solo per rapporti di durata inferiore all'anno: fuori dal nostro caso.
-- Fonti: [Brocardi – Art. 13 TUIR, testo vigente (agg. 04/07/2026)](https://www.brocardi.it/testo-unico-imposte-redditi/titolo-i/capo-i/art13.html) · [Fiscomania – Detrazioni lavoro dipendente 2026](https://fiscomania.com/detrazioni-per-redditi-da-lavoro-dipendente/)
+- **Maggiorazione 65 €** al **comma 1.1**, per reddito *"superiore a 25.000 euro ma non a 35.000 euro"*. La formulazione della norma giustifica il confronto stretto sulla soglia inferiore e inclusivo su quella superiore.
+- **Minimo garantito 690 €** (1.380 € a tempo determinato): rileva solo per rapporti sotto l'anno, fuori dal nostro caso.
 
-**Discontinuità della funzione (comportamento voluto, non bug):**
-- **15.000 → 15.000+ε**: da 1.955 a ~3.100 € (salto di ~1.145 €).
-- **25.000** e **35.000**: due gradini da 65 € (ingresso/uscita dalla maggiorazione).
-- **50.000**: *nessuna* discontinuità — la formula tende già a 0 per R → 50.000. La funzione è continua in questo punto.
+**Discontinuità della funzione** (volute, non bug): a 15.000 € salta da 1.955 a ~3.100 €; a 25.000 e 35.000 due gradini da 65 €. A 50.000 **non** c'è discontinuità: la formula tende già a zero.
+
+Fonti: [Brocardi — art. 13 TUIR, testo vigente](https://www.brocardi.it/testo-unico-imposte-redditi/titolo-i/capo-i/art13.html) · [Fiscomania](https://fiscomania.com/detrazioni-per-redditi-da-lavoro-dipendente/)
 
 ---
 
-## 4. Riduzione del cuneo fiscale — L. 207/2024 art. 1, resa strutturale dalla L. 199/2025
+## 4. Cuneo fiscale — L. 207/2024 art. 1, resa strutturale dalla L. 199/2025
 
-La Legge di Bilancio 2025 è composta da un solo articolo: le due misure stanno ai **commi 4** (somma esente) e **6** (ulteriore detrazione) dell'art. 1. Citarle come "artt. 4-6", come faceva una versione precedente di questo documento, è sbagliato — quegli articoli non esistono.
+La Legge di Bilancio 2025 ha un solo articolo: le due misure stanno ai **commi 4 e 6**.
 
-Due misure distinte, che entrano nella catena in punti diversi.
+### 4.A Somma esente (co. 4)
 
-### 4.A Somma esente (bonus cuneo)
-Spetta se il **reddito complessivo ≤ 20.000 €**. La percentuale si applica al **reddito di lavoro dipendente**, non al reddito complessivo: sono due parametri concettualmente diversi, anche se nel nostro caso semplificato coincidono.
+Spetta se il **reddito complessivo ≤ 20.000 €**. La percentuale si applica al **reddito di lavoro dipendente**: due basi concettualmente distinte, che qui coincidono.
 
 | Reddito di lavoro dipendente | Percentuale |
 |---|---|
@@ -79,12 +77,11 @@ Spetta se il **reddito complessivo ≤ 20.000 €**. La percentuale si applica a
 | 8.501 – 15.000 € | 5,3% |
 | 15.001 – 20.000 € | 4,8% |
 
-- **Importo massimo: 960 €/anno** (= 20.000 × 4,8%).
-- **Non concorre alla formazione del reddito** ai fini IRPEF e **non è assoggettata a contribuzione INPS**. Non è una detrazione: non va sottratta dall'imposta, ma sommata al netto.
-- Il reddito complessivo rilevante è calcolato al netto del reddito dell'abitazione principale e pertinenze.
-- Fonti: [Agenzia Entrate – Circolare 4/E del 16/05/2025, testo](https://def.finanze.it/DocTribFrontend/getPrassiDetail.do?id=%7BCEEFD3BC-3B00-42D7-AED1-5AFB7C40827E%7D) · [commento ADAPT](https://www.bollettinoadapt.it/la-circolare-dellagenzia-delle-entrate-n-4-e-del-16-maggio-2025/) · [FiscoeTasse – Taglio cuneo, guida e FAQ AdE](https://www.fiscoetasse.com/new-rassegna-stampa/1178-taglio-cuneo-fiscale-ecco-le-novita-2025.html) · [InformazioneFiscale – Bonus cuneo nella CU 2026](https://www.informazionefiscale.it/cu-2026-dipendenti-novita-bonus-cuneo-fiscale-istruzioni)
+- Massimo **960 €/anno** (20.000 × 4,8%).
+- **Non concorre al reddito** IRPEF e **non è soggetta a contribuzione INPS**. Non è una detrazione: si somma al netto, non riduce l'imposta.
+- Il reddito complessivo rilevante è al netto dell'abitazione principale e pertinenze.
 
-### 4.B Ulteriore detrazione
+### 4.B Ulteriore detrazione (co. 6)
 
 | Reddito complessivo | Detrazione |
 |---|---|
@@ -92,14 +89,17 @@ Spetta se il **reddito complessivo ≤ 20.000 €**. La percentuale si applica a
 | 32.001 – 40.000 € | 1.000 × (40.000 − R) / 8.000 |
 | oltre 40.000 € | 0 |
 
-- È una **detrazione dall'imposta lorda**, quindi soggetta a capienza. Cumulabile con la detrazione art. 13, con quelle per familiari a carico e con il bonus mamme.
-- Fonti: [Coverflex – Taglio cuneo 2026](https://www.coverflex.com/it/blog/taglio-cuneo-fiscale) · [Ipsoa – Cuneo fiscale](https://www.ipsoa.it/guide/cuneo-fiscale-funziona)
+Detrazione dall'imposta lorda, quindi soggetta a capienza. Cumulabile con l'art. 13, con le detrazioni per familiari e con il bonus mamme.
+
+Fonti: [Agenzia Entrate — circolare 4/E del 16/05/2025](https://def.finanze.it/DocTribFrontend/getPrassiDetail.do?id=%7BCEEFD3BC-3B00-42D7-AED1-5AFB7C40827E%7D) · [FiscoeTasse — guida e FAQ](https://www.fiscoetasse.com/new-rassegna-stampa/1178-taglio-cuneo-fiscale-ecco-le-novita-2025.html) · [InformazioneFiscale — bonus cuneo nella CU 2026](https://www.informazionefiscale.it/cu-2026-dipendenti-novita-bonus-cuneo-fiscale-istruzioni)
 
 ---
 
-## 5. Addizionale regionale — Lombardia
+## 5. Addizionali locali
 
-Base: art. 72 **l.r. 10/2003**, come modificato dalla **l.r. 5/2022**. Si applica **per scaglioni** sul reddito complessivo ai fini IRPEF, al netto degli oneri deducibili.
+### Regionale — Lombardia
+
+Art. 72 **l.r. 10/2003**, come modificato dalla **l.r. 5/2022**. Per scaglioni, sul reddito complessivo al netto degli oneri deducibili.
 
 | Scaglione | Aliquota |
 |---|---|
@@ -108,110 +108,73 @@ Base: art. 72 **l.r. 10/2003**, come modificato dalla **l.r. 5/2022**. Si applic
 | 28.001 – 50.000 € | 1,72% |
 | oltre 50.000 € | 1,73% |
 
-> **Dettaglio non ovvio, e vigente:** l'**art. 1 commi 649-650 della L. 199/2025** proroga **fino al 2028** la facoltà per le Regioni di mantenere i propri scaglioni storici, intervenendo sul co. 728 dell'art. 1 della L. 207/2024. Se una Regione non delibera entro il 31 dicembre, per gli anni 2026-2028 restano in vigore scaglioni e aliquote dell'anno precedente. La Lombardia ha quindi **4 scaglioni regionali** che convivono con i **3 scaglioni nazionali**. Le soglie regionali (15.000 / 28.000 / 50.000) non coincidono con quelle IRPEF: servono due tabelle separate nel motore.
+**Quattro scaglioni regionali contro tre nazionali.** L'art. 1 commi 649-650 della L. 199/2025 proroga al 2028 la facoltà per le Regioni di mantenere i propri scaglioni storici, intervenendo sul co. 728 della L. 207/2024. Le soglie regionali non coincidono con quelle IRPEF: servono due tabelle separate nel motore.
 
-- Fonti: [Regione Lombardia – Addizionale regionale all'IRPEF](https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef) · [Directio – Aliquote regionali 2026](https://directio.it/News/Details/11189/addizionale-regionale-irpef-aliquote-2026) · [PMI.it – vecchie aliquote fino al 2028](https://www.pmi.it/economia/mercati/481567/addizionali-irpef-vecchie-aliquote-fino-al-2028.html)
+Fonti: [Regione Lombardia](https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef) · [PMI.it — proroga al 2028](https://www.pmi.it/economia/mercati/481567/addizionali-irpef-vecchie-aliquote-fino-al-2028.html)
 
----
+### Comunale — Milano
 
-## 6. Addizionale comunale — Milano
+Aliquota unica **0,80%**, esenzione fino a **23.000 €** di reddito imponibile. Delibera n. 46 del 28/09/2020, confermata annualmente.
 
-| Voce | Valore |
-|---|---|
-| Aliquota | **0,80%** (unica, non a scaglioni) |
-| Soglia di esenzione | **23.000 €** di reddito imponibile |
-| Delibera | n. 46 del 28/09/2020, confermata annualmente (ultima conferma 20/12/2025) |
+L'esenzione **non è una franchigia**: superata la soglia si paga sull'intero imponibile, non sull'eccedenza. Da qui una discontinuità di ~184 € a 23.001 €.
 
-- L'esenzione **non è una franchigia**: superata la soglia si paga lo 0,8% sull'**intero imponibile**, non sull'eccedenza. Ne deriva una **discontinuità di ~184 €** a 23.001 € di imponibile.
-- Fonti: [MEF – Portale del federalismo fiscale, scheda Milano](https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&lista=1&pagina=lombardia.htm&cm=&pr=MI&cc=F205&r=1) · [Comune di Milano – Addizionale comunale IRPEF](https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef), che dichiara direttamente *«esenti i cittadini con reddito imponibile determinato ai fini Irpef non superiore a € 23.000,00»* e *«aliquota unica dello 0,8%»*
+Fonti: [Comune di Milano](https://www.comune.milano.it/argomenti/tributi/addizionale-comunale-irpef), che dichiara *«esenti i cittadini con reddito imponibile … non superiore a € 23.000,00»* e *«aliquota unica dello 0,8%»* · [MEF — portale del federalismo fiscale](https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&lista=1&pagina=lombardia.htm&cm=&pr=MI&cc=F205&r=1)
 
 ---
 
-## 7. Regole di calcolo (non sono numeri, ma servono al motore)
+## 6. Regole di calcolo
 
-1. **I contributi non sono oneri deducibili.** I contributi previdenziali obbligatori del dipendente **non concorrono a formare il reddito** ex **art. 51 co. 2 lett. a) TUIR** — non sono deduzioni ex art. 10. Il risultato numerico è identico, la motivazione no.
-   → `reddito complessivo = RAL − contributi`. È questa la base per: scaglioni IRPEF, detrazione art. 13, soglie del cuneo, addizionali.
+1. **I contributi non sono oneri deducibili.** Non concorrono a formare il reddito ex **art. 51 co. 2 lett. a) TUIR**, non sono deduzioni ex art. 10. Il numero è identico, la motivazione no.
+   → `reddito complessivo = RAL − contributi`, ed è la base per scaglioni IRPEF, detrazione art. 13, soglie del cuneo e addizionali.
 
-2. **Base delle addizionali** = reddito complessivo determinato ai fini IRPEF **al netto degli oneri deducibili** (art. 50 D.Lgs. 446/1997). Non è l'imponibile al netto delle detrazioni.
+2. **Base delle addizionali** = reddito complessivo al netto degli oneri deducibili (art. 50 D.Lgs. 446/1997). Non è l'imponibile al netto delle detrazioni.
 
-3. **Le addizionali sono dovute solo se l'IRPEF è dovuta.** Art. 50 D.Lgs. 446/1997: l'addizionale è dovuta solo se, per lo stesso anno, risulta dovuta l'IRPEF **dopo aver scomputato le detrazioni** e i crediti d'imposta. Escluso il prelievo anche per IRPEF netta **non superiore a 12 €** — soglia che non sta nell'articolo ma nella **circolare AdE del 9 gennaio 1998**. → serve un controllo di incapienza *prima* del blocco addizionali.
-   Fonte: [Dipartimento Finanze – Disciplina del tributo](https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Addizionale-regionale-allIRPEF/disciplina-del-tributo/)
+3. **Addizionali dovute solo se l'IRPEF è dovuta**, dopo aver scomputato detrazioni e crediti. Escluse anche per IRPEF netta ≤ 12 € — soglia che sta nella **circolare AdE del 9 gennaio 1998**, non nell'articolo. Serve un controllo di incapienza *prima* del blocco addizionali. [Fonte](https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Addizionale-regionale-allIRPEF/disciplina-del-tributo/)
 
-4. **Capienza generale:** `IRPEF netta = max(0, imposta lorda − detrazioni)`. Le detrazioni non generano credito.
+4. **Capienza:** `IRPEF netta = max(0, imposta lorda − detrazioni)`. Le detrazioni non generano credito.
 
 ---
 
-## 8. Trattamento integrativo — vigente, non presente nel brief iniziale
+## 7. Trattamento integrativo
 
-**Ancora in vigore nel 2026**: la LdB 2026 non lo ha modificato. Riferimento: **art. 1 D.L. 3/2020**, conv. L. 21/2020.
-È **cumulabile** con entrambe le misure del cuneo: sono istituti distinti, chi rientra nei requisiti di entrambi li riceve insieme in busta paga.
+**Vigente nel 2026**, non modificato dalla L. 199/2025. Riferimento: **art. 1 D.L. 3/2020**, conv. L. 21/2020. È **cumulabile** con entrambe le misure del cuneo.
 
 | Reddito complessivo | Spettanza |
 |---|---|
-| fino a 15.000 € | **1.200 €/anno**, a condizione che l'imposta lorda sia **superiore alla detrazione art. 13 diminuita di 75 €** |
-| 15.001 – 28.000 € | solo se la somma di determinate detrazioni (familiari a carico, lavoro dipendente, mutui prima casa ante 2021) **supera l'imposta lorda**; spetta per la differenza, max 1.200 € |
+| fino a 15.000 € | **1.200 €/anno**, se l'imposta lorda supera la detrazione art. 13 diminuita di 75 € |
+| 15.001 – 28.000 € | solo se la somma delle detrazioni (familiari, lavoro dipendente, mutui ante 2021) supera l'imposta lorda; spetta per la differenza, max 1.200 € |
 | oltre 28.000 € | non spetta |
 
-- È un **credito erogato in busta paga**, non una detrazione: aumenta il netto anche in assenza di capienza.
-- Fonti: [Fiscomania – Trattamento integrativo 2026](https://fiscomania.com/trattamento-integrativo-come-funziona/) · [Studio Mattonai – Disciplina vigente 2026](https://www.studiomattonai.it/2026/03/06/trattamento-integrativo-2026-disciplina-vigente-misure-speciali-15-e-detassazioni-su-voci-retributive/) · [Factorial – Novità 2026](https://factorial.it/blog/come-funziona-il-trattamento-integrativo/)
+È un **credito erogato in busta**, non una detrazione: aumenta il netto anche senza capienza.
 
-### 8.1 Perimetro effettivo nel nostro modello (calcolato)
+### Perimetro effettivo nel modello
 
-Con aliquota contributiva 9,19% e nessun familiare a carico né mutuo, il TI incide **solo in una banda ristretta di RAL**:
+Sotto i 18.136,56 € di RAL i contributi sono la costante **1.666,75 €** (9,19% del minimale): la conversione fra imponibile e RAL è una somma, non una divisione.
 
-Sotto i 18.136,56 € di RAL i contributi non seguono la retribuzione: sono la costante **1.666,75 €**, cioè il 9,19% del minimale. La conversione da imponibile a RAL in questa fascia è quindi una somma, non una divisione.
+- Soglia inferiore: `0,23 × R > 1.955 − 75` → R > 8.173,91 € → **RAL > 9.840,66 €**
+- Soglia superiore: R ≤ 15.000 → **RAL ≤ 16.666,75 €**
 
-- **Prima condizione** (R ≤ 15.000): `0,23 × R > 1.955 − 75` → **R > 8.173,91 €** → **RAL > 9.840,66 €**
-- **Limite superiore**: R ≤ 15.000 → **RAL ≤ 16.666,75 €**
+→ **1.200 € piatti per RAL fra 9.840,67 e 16.666,74 €**, zero fuori. Confini verificati per campionamento sul motore.
 
-→ **Il TI vale 1.200 € piatti per RAL fra 9.840,67 e 16.666,74 €. Fuori da questa banda è zero.** Confini verificati per campionamento diretto sul motore.
+**Il secondo ramo è irraggiungibile.** Richiede detrazione > imposta lorda: fino a 15.000 € di imponibile la detrazione è la costante 1.955 € e l'imposta lorda cresce al 23%, quindi si eguagliano a **8.500 € esatti**. Sopra restano divergenti (a R = 15.001: 3.450 € contro 3.100 €) e il ramo parte proprio da lì. Va implementato solo il primo.
 
-- **Seconda condizione (15.001 – 28.000 €): irraggiungibile sotto le nostre assunzioni.** Richiede `detrazione art. 13 > imposta lorda`. Fino a 15.000 € di imponibile la detrazione è la costante 1.955 € e l'imposta lorda cresce al 23%: si eguagliano a **8.500 € esatti**, dove `0,23 × 8.500 = 1.955`. Sopra quel punto l'imposta lorda resta sempre superiore e il divario si allarga — a R = 15.001 vale 3.450 € contro una detrazione di 3.100 €. Il ramo parte da 15.001 €, cioè oltre seimila euro sopra l'unico punto in cui la sua condizione potrebbe verificarsi.
-
-> Una versione precedente di questo documento indicava l'incrocio a **~13.911 €**. Quel valore si otteneva risolvendo la formula della *seconda* fascia della detrazione, che vale solo sopra i 15.000 €, in un punto che sta sotto il suo dominio: era l'intersezione di una curva estrapolata dove non esiste. La conclusione non cambia, il numero sì.
-  → **Va implementato solo il primo ramo**, documentando che il secondo è dimostrabilmente inattivo date le assunzioni.
+Fonti: [Fiscomania](https://fiscomania.com/trattamento-integrativo-come-funziona/) · [Studio Mattonai — disciplina vigente 2026](https://www.studiomattonai.it/2026/03/06/trattamento-integrativo-2026-disciplina-vigente-misure-speciali-15-e-detassazioni-su-voci-retributive/)
 
 ---
 
-## 9. Riepilogo scostamenti rispetto al brief iniziale
+## Appendice — valori NON vigenti, da non usare
 
-**Confermati senza modifiche:** tutti i valori numerici della §5 del brief — scaglioni IRPEF, 9,19%, 1% aggiuntivo, 56.224, 122.295, 58,13, detrazione art. 13 e maggiorazione 65 €, percentuali cuneo 7,1/5,3/4,8, ulteriore detrazione 1.000 €, scaglioni Lombardia, Milano 0,8% / 23.000.
-
-**Da correggere nel brief:**
-- La detrazione art. 13 **non ha discontinuità a 50.000 €** (è continua). Il caso di test "RAL 50.001" verifica il passaggio 33%→43% e l'aliquota regionale, non uno scalino della detrazione.
-- I contributi **non sono oneri deducibili**: non concorrono al reddito (art. 51 co. 2 lett. a TUIR).
-
-**Da aggiungere alla catena di calcolo:**
-- Controllo di incapienza: addizionali non dovute se IRPEF netta = 0 (o ≤ 12 €).
-- Trattamento integrativo, primo ramo (§8.1).
-- Cap di 960 € sulla somma esente.
-- Cap del massimale contributivo a 122.295 € (solo iscritti post-1995: assunzione da dichiarare).
-
-**Nessun punto aperto.** La collocazione della maggiorazione di 65 €, rimasta a lungo incerta, è confermata: **art. 13 co. 1.1 TUIR**.
-
-**Errori corretti in questo documento dopo la revisione finale**, elencati perché la loro storia è parte della verifica:
-
-| Era scritto | È corretto |
-|---|---|
-| Cuneo: «L. 207/2024 artt. 4-6» | art. 1 **commi 4 e 6** — la legge ha un solo articolo |
-| Maggiorazione 65 € al «co. 1-bis» | **co. 1.1** |
-| Banda del trattamento integrativo «~9.002 – ~16.518 €» | **9.840,67 – 16.666,74 €** — i valori vecchi non tenevano conto del minimale contributivo |
-| Incrocio detrazione e imposta lorda a «~13.911 €» | **8.500 €** esatti — il valore precedente estrapolava una formula fuori dal suo dominio |
-| Prima fascia pensionabile 2025 «55.008 €» | **55.448 €** — riscontro: × 1,014 dà i 56.224 € del 2026 |
-
----
-
-## Appendice — valori e regole NON vigenti, da non usare
-
-Elencati solo perché circolano ancora in rete e possono contaminare il confronto con i calcolatori online.
+Elencati perché circolano ancora e contaminano il confronto con i calcolatori online.
 
 | Trappola | Realtà 2026 |
 |---|---|
-| 4 scaglioni IRPEF con 25% tra 15.000 e 28.000 | regime 2023, superato |
+| 4 scaglioni IRPEF con 25% fra 15.000 e 28.000 | regime 2023 |
 | Seconda aliquota IRPEF al 35% | regime 2024–2025, ora 33% |
 | Massimale contributivo 119.650 / 120.607 | valori 2024 / 2025, ora 122.295 |
-| Prima fascia pensionabile 52.190 / 55.448 | valori di anni precedenti (55.448 è il 2025), ora 56.224 |
-| Taglio del cuneo come *esonero contributivo* | abolito dal 2025: i contributi restano interi al 9,19% |
-| Detrazione art. 13 "+50 € tra 25.001 e 29.000" | non confermato dal testo dell'articolo: la maggiorazione è 65 € tra 25.000 e 35.000 |
+| Prima fascia pensionabile 52.190 / 55.448 | 55.448 è il 2025, ora 56.224 |
+| Cuneo come *esonero contributivo* | abolito dal 2025: i contributi restano interi al 9,19% |
+| Detrazione art. 13 «+50 € fra 25.001 e 29.000» | non confermato dal testo: è 65 € fra 25.000 e 35.000 |
 
-Nota metodologica: diversi calcolatori online ignorano la maggiorazione di 65 €, il trattamento integrativo o la regola di incapienza sulle addizionali. In caso di scostamento va indagata la causa, non assunto che l'errore sia nostro.
+Diversi calcolatori online ignorano la maggiorazione di 65 €, il trattamento integrativo o la regola di incapienza. In caso di scostamento va indagata la causa, non assunto che l'errore sia nostro.
+
+*Documento riverificato integralmente il 28/08/2026: ogni URL testato, ogni citazione normativa ricontrollata alla fonte.*

@@ -1,9 +1,8 @@
 // Parametri fiscali e contributivi — anno d'imposta 2026.
-// Caso modellato: dipendente privato a tempo indeterminato, residente a Milano (Lombardia).
-// Verifica puntuale delle fonti in "Dati e fonti/parametri-fiscali-2026.md".
-//
-// Il motore riceve questo oggetto come argomento e non lo importa: cambiare anno
-// significa passargli un altro file, non modificare calcolo.js.
+// Caso modellato: dipendente privato a tempo indeterminato, Milano (Lombardia).
+// Verifica delle fonti in "Dati e fonti/parametri-fiscali-2026.md".
+// Il motore riceve questo oggetto come argomento: cambiare anno significa
+// passargli un altro file, non modificare calcolo.js.
 
 export const PARAMETRI_2026 = {
   anno: 2026,
@@ -36,11 +35,9 @@ export const PARAMETRI_2026 = {
     }
   },
 
-  // Le tre fasce hanno forme algebriche diverse (costante, lineare a due termini,
-  // lineare a un termine): restano tre rami espliciti nel motore invece di una
-  // tabella comune, che sarebbe meno leggibile della norma che trascrive.
-  // Il minimo garantito di 690 € (1.380 € a tempo determinato) non compare:
-  // rileva solo per rapporti di durata inferiore all'anno, che il modello esclude.
+  // Le tre fasce hanno forme algebriche diverse: restano tre rami espliciti nel
+  // motore, piu' leggibili di una tabella comune. Il minimo garantito di 690 €
+  // non compare: rileva solo per rapporti sotto l'anno, che il modello esclude.
   detrazioneLavoroDipendente: {
     fascia1: { limite: 15000, importo: 1955 },
     fascia2: { limite: 28000, base: 1910, incremento: 1190, ampiezza: 13000 },
@@ -77,10 +74,8 @@ export const PARAMETRI_2026 = {
   },
 
   // Spetta se l'imposta lorda supera la detrazione art. 13 diminuita di 75 €.
-  // Il ramo 15.001–28.000 € della norma non è implementato: richiede che le
-  // detrazioni superino l'imposta lorda, condizione mai vera senza familiari a
-  // carico né mutui ante 2021: la detrazione supera l'imposta lorda solo sotto
-  // 8.500 € di imponibile, dove 0,23 x 8.500 fa esattamente 1.955. Vedi README.
+  // Il ramo 15.001–28.000 € non è implementato: richiede detrazione > imposta
+  // lorda, vero solo sotto 8.500 € di imponibile (0,23 x 8.500 = 1.955).
   trattamentoIntegrativo: {
     importo: 1200,
     limiteReddito: 15000,

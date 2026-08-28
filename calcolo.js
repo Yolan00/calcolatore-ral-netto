@@ -1,9 +1,6 @@
 // Motore di calcolo da RAL a netto. Funzioni pure: nessun riferimento al DOM,
-// nessun accesso a variabili globali, i parametri arrivano sempre come argomento.
-//
-// Nessun arrotondamento intermedio: si calcola in virgola mobile piena e si
-// arrotonda solo in fase di visualizzazione. Arrotondare a ogni passaggio
-// accumula scarti e rende impossibile il confronto con i riferimenti esterni.
+// i parametri arrivano sempre come argomento.
+// Nessun arrotondamento intermedio: si arrotonda solo alla visualizzazione.
 
 // Limiti di dominio, non parametri fiscali: non cambiano con l'anno d'imposta.
 export const RAL_MASSIMA = 10_000_000;
@@ -20,9 +17,8 @@ function validaRal(ral) {
   }
 }
 
-// Le mensilita' ammesse sono un dato contrattuale, quindi la lista sta nei
-// parametri. Senza questo controllo una mensilita' pari a zero produrrebbe
-// un netto mensile infinito, e NaN produrrebbe NaN.
+// Senza questo controllo una mensilita' pari a zero darebbe netto mensile
+// infinito, e NaN darebbe NaN. La lista ammessa e' un dato contrattuale.
 function validaMensilita(mensilita, p) {
   const { mensilitaAmmesse } = p.contratto;
   if (!mensilitaAmmesse.includes(mensilita)) {
@@ -122,8 +118,7 @@ export function addizionaliLocali(reddito, irpefNetta, p) {
   };
 }
 
-// L'incidenza di una voce sul lordo e' un numero derivato dal dominio, non una
-// scelta di presentazione: sta qui perche' app.js non deve contenere aritmetica.
+// Sta qui, e non in app.js, perche' il collante non deve contenere aritmetica.
 export function incidenzaSuRal(importo, ral) {
   return importo / ral;
 }
@@ -135,10 +130,9 @@ export function calcolaNetto(ral, p, mensilita = p.contratto.mensilita) {
   const contributi = contributiInps(ral, p);
   const redditoComplessivo = ral - contributi.totale;
 
-  // Sotto il minimale i contributi sono una costante e possono superare la RAL,
-  // producendo un imponibile negativo. Non e' un caso da correggere ma da
-  // rifiutare: il modello assume un rapporto a tempo pieno per l'intero anno,
-  // e una retribuzione cosi' bassa contraddice quell'assunzione.
+  // Sotto il minimale i contributi sono una costante e possono superare la RAL.
+  // Da rifiutare, non da correggere: l'input contraddice l'assunzione di
+  // rapporto a tempo pieno per l'intero anno.
   if (redditoComplessivo <= 0) {
     throw new RangeError(
       'I contributi dovuti sul minimale superano la RAL indicata. Il modello assume ' +

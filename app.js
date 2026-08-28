@@ -70,21 +70,19 @@ const SEZIONI = [
   }
 ];
 
-// Le assunzioni dichiarate in pagina. Sono funzioni dei parametri, non testo
-// fisso: le voci che citano un valore fiscale lo leggono da dove lo legge il
-// motore, e non possono raccontare qualcosa di diverso da quello che è stato
-// calcolato. Il README ne dà la versione estesa con le motivazioni.
+// Le voci che citano un valore fiscale lo leggono dai parametri, così non
+// possono divergere dal calcolo mostrato. Versione estesa nel README.
 const ASSUNZIONI = [
-  () => 'Contratto a tempo indeterminato, a tempo pieno per l’intero anno: le detrazioni non sono ridotte pro rata e il part-time non è rappresentato.',
+  () => 'Tempo indeterminato e tempo pieno per l’intero anno: detrazioni non ridotte pro rata, part-time non rappresentato.',
   (p) => `Residenza a ${p.addizionali.comunale.nome}, regione ${p.addizionali.regionale.nome}.`,
-  (p) => `Azienda fino a 15 dipendenti, quindi aliquota INPS a carico del lavoratore del ${percento(p.contributi.aliquotaLavoratore, 2)}. Oltre i 15 dipendenti sale al 9,49% e il netto è leggermente inferiore.`,
-  (p) => `Iscritto all’INPS dopo il 31/12/1995: solo per questi lavoratori vale il massimale contributivo di ${euro(p.contributi.massimale)}.`,
-  (p) => `Contributi calcolati su ${p.contributi.giorniRetribuiti} giorni retribuiti l’anno, convenzione standard per un rapporto a tempo pieno.`,
-  () => 'Nessun familiare a carico e nessun onere deducibile o detraibile oltre a quelli automatici.',
+  (p) => `Azienda fino a 15 dipendenti: aliquota INPS ${percento(p.contributi.aliquotaLavoratore, 2)}. Oltre i 15 sale al 9,49% e il netto scende.`,
+  (p) => `Iscritto all’INPS dopo il 31/12/1995: solo per loro vale il massimale di ${euro(p.contributi.massimale)}.`,
+  (p) => `Contributi su ${p.contributi.giorniRetribuiti} giorni retribuiti l’anno, convenzione per il tempo pieno.`,
+  () => 'Nessun familiare a carico, nessun onere deducibile o detraibile.',
   () => 'Nessun fondo pensione, fringe benefit, premio di risultato, straordinario o bonus.',
-  () => 'TFR escluso dal netto: matura ma non viene erogato in busta.',
-  (p) => `Mensilità secondo il ${p.contratto.nome}. Tredicesima e quattordicesima sono trattate come le altre mensilità: nella realtà la tredicesima è tassata senza le detrazioni mensili, quindi la singola busta differisce mentre il totale annuo resta corretto.`,
-  () => 'Addizionali imputate all’anno in corso; nella realtà si versano l’anno successivo, a rate.'
+  () => 'TFR escluso: matura ma non viene erogato in busta.',
+  (p) => `Mensilità secondo il ${p.contratto.nome}. Tredicesima e quattordicesima trattate come le altre: la singola busta differisce, il totale annuo no.`,
+  () => 'Addizionali imputate all’anno in corso; nella realtà si versano l’anno successivo.'
 ];
 
 function elemento(tag, testo, classe) {
@@ -100,9 +98,8 @@ function riepilogo(r) {
     elemento('p', 'Netto annuo', 'riepilogo-voce'),
     elemento('p', euro(r.nettoAnnuo), 'riepilogo-cifra'),
     elemento('p', `${euro(r.nettoMensile)} su ${r.mensilita} mensilità`, 'riepilogo-mensile'),
-    // Deliberatamente il rapporto netto/RAL e non quello delle trattenute: dove
-    // il cuneo e' attivo i due divergono, e "trattenuto il 18,5%" accanto a un
-    // netto che perde il 3,9% e' letteralmente vero e sostanzialmente fuorviante.
+    // Rapporto netto/RAL, non trattenute/RAL: dove il cuneo e' attivo i due
+    // divergono, e il secondo accanto al netto sarebbe fuorviante.
     elemento('p', `Pari al ${percento(incidenzaSuRal(r.nettoAnnuo, r.ral))} della RAL`, 'riepilogo-nota')
   );
   return box;
