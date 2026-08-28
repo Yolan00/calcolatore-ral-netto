@@ -88,7 +88,14 @@ Attenzione alle fonti obsolete: molte guide online riportano ancora quattro scag
 
 ## Il netto non è monotono
 
-All'aumentare del lordo il netto **scende**, in due punti. Non sono bug: sono soglie secche volute dal legislatore, e il calcolatore le riproduce invece di appianarle. Entrambe sono congelate in test che ne verificano l'entità esatta.
+All'aumentare del lordo il netto **scende**, in tre punti. Non sono bug: sono soglie secche volute dal legislatore, e il calcolatore le riproduce invece di appianarle. Tutte e tre sono congelate in test che ne verificano l'entità esatta.
+
+**A 10.166,75 € di RAL — caduta di 151,99 €.** Superati gli 8.500 € di imponibile, l'aliquota della somma esente scende dal 7,1% al 5,3%. Non è progressiva: la nuova aliquota si applica all'intero reddito, non alla sola eccedenza.
+
+| RAL | Netto annuo |
+|---|---|
+| 10.166 € | 10.302,70 € |
+| 10.167 € | 10.150,71 € |
 
 **A 16.666,75 € di RAL — caduta di 52,26 €.** Superati i 15.000 € di imponibile agiscono insieme tre norme diverse, in direzioni opposte: il trattamento integrativo si azzera (−1.200 €), l'aliquota della somma esente scende dal 5,3% al 4,8% (−70 €), la detrazione art. 13 salta da 1.955 a ~3.100 € (+1.145 €). Nessuna delle tre da sola spiega il risultato.
 
@@ -123,11 +130,15 @@ Dalla consegna: tempo indeterminato, residenza a Milano, nessuna agevolazione pa
 - **Minimo garantito della detrazione (690 €, 1.380 € a tempo determinato) non implementato.** Rileva solo per rapporti di durata inferiore all'anno.
 - **Clausola di sterilizzazione oltre 200.000 € non modellata.** La L. 199/2025 riduce di 440 € le detrazioni per oneri al 19% sopra tale reddito. Il modello non prevede oneri detraibili, quindi la clausola non ha su cosa agire.
 - **RAL troppo basse vengono rifiutate.** Se i contributi dovuti sul minimale superano la retribuzione, l'imponibile sarebbe negativo. Il calcolatore rifiuta con una spiegazione invece di restituire uno zero plausibile e falso.
+- **Il minimale contributivo è applicato su base annua.** Nella realtà il confronto con il minimale avviene mese per mese: con retribuzione irregolare i due metodi divergono. Per una retribuzione costante — l'unico caso che il modello rappresenta — coincidono.
+- **L'imponibile fiscale non viene arrotondato all'euro.** In busta paga e in dichiarazione l'arrotondamento all'unità precede l'applicazione degli scaglioni. Qui si calcola in virgola mobile piena per non accumulare scarti, il che è più preciso ma diverge dal procedimento reale di pochi centesimi.
 - **Nessun confronto con una busta paga reale.** La validazione è avvenuta contro altri modelli, non contro documenti amministrativi.
+- **Un difetto del codice verrebbe mostrato come se fosse un errore di input.** La pagina intercetta ogni eccezione e ne stampa il messaggio: distinguere gli errori di validazione da quelli imprevisti richiederebbe un tipo d'errore dedicato, sproporzionato rispetto al rischio su una base di codice di questa dimensione.
+- **Al trattamento integrativo viene passata la detrazione art. 13 comprensiva della maggiorazione di 65 €.** La norma richiama la detrazione del solo comma 1. Oggi è indifferente, perché le due misure non si sovrappongono mai: il trattamento integrativo si ferma a 15.000 € di imponibile e la maggiorazione parte da 25.000 €.
 
 ## Verifica
 
-**17 test** eseguibili con `node --test`. Gli attesi sono calcolati a mano a partire dalla norma, non copiati dall'output del motore: un test che confronta il codice con se stesso certifica solo che il codice fa quello che fa.
+**19 test** eseguibili con `node --test`. Gli attesi sono calcolati a mano a partire dalla norma, non copiati dall'output del motore: un test che confronta il codice con se stesso certifica solo che il codice fa quello che fa.
 
 Oltre ai casi numerici, la suite verifica alcune **proprietà**:
 

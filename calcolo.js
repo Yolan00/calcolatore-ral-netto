@@ -20,6 +20,18 @@ function validaRal(ral) {
   }
 }
 
+// Le mensilita' ammesse sono un dato contrattuale, quindi la lista sta nei
+// parametri. Senza questo controllo una mensilita' pari a zero produrrebbe
+// un netto mensile infinito, e NaN produrrebbe NaN.
+function validaMensilita(mensilita, p) {
+  const { mensilitaAmmesse } = p.contratto;
+  if (!mensilitaAmmesse.includes(mensilita)) {
+    throw new RangeError(
+      `Mensilità non prevista dal contratto. Valori ammessi: ${mensilitaAmmesse.join(', ')}.`
+    );
+  }
+}
+
 // Unica implementazione del calcolo progressivo: serve sia l'IRPEF nazionale
 // sia l'addizionale regionale, che sono la stessa operazione su tabelle diverse.
 export function imposteAScaglioni(reddito, scaglioni) {
@@ -82,7 +94,15 @@ export function ulterioreDetrazione(reddito, p) {
 export function sommaEsente(reddito, p) {
   const { limiteReddito, aliquote } = p.cuneo.sommaEsente;
   if (reddito > limiteReddito) return 0;
-  return reddito * aliquote.find((a) => reddito <= a.fino).aliquota;
+
+  // La ricerca ha successo solo se l'ultima fascia arriva fino al limite di
+  // reddito. Se i due parametri divergessero, meglio un errore esplicito che
+  // un accesso a undefined qualche riga piu' avanti.
+  const fascia = aliquote.find((a) => reddito <= a.fino);
+  if (!fascia) {
+    throw new Error('Parametri incoerenti: le fasce della somma esente non coprono il limite di reddito.');
+  }
+  return reddito * fascia.aliquota;
 }
 
 export function trattamentoIntegrativo(reddito, irpefLorda, detrazione, p) {
@@ -110,6 +130,7 @@ export function incidenzaSuRal(importo, ral) {
 
 export function calcolaNetto(ral, p, mensilita = p.contratto.mensilita) {
   validaRal(ral);
+  validaMensilita(mensilita, p);
 
   const contributi = contributiInps(ral, p);
   const redditoComplessivo = ral - contributi.totale;

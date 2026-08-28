@@ -115,6 +115,32 @@ test('il netto non e monotono: uscita dal trattamento integrativo', () => {
   vicino(sopra.sommaEsente, 721.60, 'somma esente al 4,8%');
 });
 
+test('il netto non e monotono: cambio di aliquota della somma esente', () => {
+  // A 8.500 EUR di imponibile l'aliquota scende dal 7,1% al 5,3% e si applica
+  // all'intero reddito, non alla sola eccedenza: da qui il salto.
+  const sotto = calcolaNetto(10166, P);
+  const sopra = calcolaNetto(10167, P);
+  vicino(sotto.redditoComplessivo, 8499.25, 'imponibile sotto soglia');
+  vicino(sopra.redditoComplessivo, 8500.25, 'imponibile sopra soglia');
+  vicino(sotto.sommaEsente, 603.45, 'somma esente al 7,1%');
+  vicino(sopra.sommaEsente, 450.51, 'somma esente al 5,3%');
+  vicino(sotto.nettoAnnuo, 10302.70, 'netto a RAL 10.166');
+  vicino(sopra.nettoAnnuo, 10150.71, 'netto a RAL 10.167');
+  vicino(sotto.nettoAnnuo - sopra.nettoAnnuo, 151.99, 'caduta del netto');
+
+  // Qui la detrazione supera l'imposta lorda: l'IRPEF netta e' nulla e le
+  // addizionali non sono dovute (art. 50 D.Lgs. 446/1997).
+  assert.equal(sotto.irpefNetta, 0, 'IRPEF netta azzerata dalla detrazione');
+  assert.equal(sotto.addizionali.regionale, 0, 'addizionale regionale non dovuta');
+  assert.equal(sotto.addizionali.comunale, 0, 'addizionale comunale non dovuta');
+});
+
+test('le mensilita fuori dal contratto vengono rifiutate', () => {
+  for (const m of [0, -3, NaN, 2.5, 15, '14']) {
+    assert.throws(() => calcolaNetto(35000, P, m), RangeError, `mensilita ${String(m)}`);
+  }
+});
+
 test('somma esente e ulteriore detrazione non si sovrappongono mai', () => {
   for (const ral of [9900, 16600, 22000, 25000, 30000, 38000, 45000]) {
     const r = calcolaNetto(ral, P);

@@ -3,7 +3,10 @@
 // la lettura dell'importo e' la logica piu' insidiosa del livello di presentazione
 // ed e' l'unica che meriti dei test propri.
 
-export const AIUTO_FORMATO = 'Usa solo cifre, con la virgola per i decimali. Esempi: 35000 · 35.000 · 1.234,56';
+// Gli esempi compaiono sia nel suggerimento sotto il campo sia nel messaggio
+// d'errore: definiti una volta sola perche' non possano divergere.
+export const ESEMPI_FORMATO = '35000 · 35.000 · 1.234,56';
+export const AIUTO_FORMATO = `Usa solo cifre, con la virgola per i decimali. Esempi: ${ESEMPI_FORMATO}`;
 
 // useGrouping esplicito: di default l'italiano usa il raggruppamento "min2" e non
 // separa le migliaia sotto i 10.000, dando "3216,50 €" accanto a "26.032,22 €".

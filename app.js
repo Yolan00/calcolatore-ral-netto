@@ -4,7 +4,7 @@
 
 import { PARAMETRI_2026 } from './parametri-2026.js';
 import { calcolaNetto, incidenzaSuRal } from './calcolo.js';
-import { euro, percento, leggiImporto } from './formato.js';
+import { euro, percento, leggiImporto, ESEMPI_FORMATO } from './formato.js';
 
 const form = document.querySelector('#calcolatore');
 const contenitore = document.querySelector('#risultato');
@@ -83,7 +83,10 @@ function riepilogo(r) {
     elemento('p', 'Netto annuo', 'riepilogo-voce'),
     elemento('p', euro(r.nettoAnnuo), 'riepilogo-cifra'),
     elemento('p', `${euro(r.nettoMensile)} su ${r.mensilita} mensilità`, 'riepilogo-mensile'),
-    elemento('p', `Trattenuto sul lordo: ${percento(incidenzaSuRal(r.totaleTrattenute, r.ral))}`, 'riepilogo-nota')
+    // Deliberatamente il rapporto netto/RAL e non quello delle trattenute: dove
+    // il cuneo e' attivo i due divergono, e "trattenuto il 18,5%" accanto a un
+    // netto che perde il 3,9% e' letteralmente vero e sostanzialmente fuorviante.
+    elemento('p', `Pari al ${percento(incidenzaSuRal(r.nettoAnnuo, r.ral))} della RAL`, 'riepilogo-nota')
   );
   return box;
 }
@@ -171,3 +174,4 @@ form.addEventListener('submit', (evento) => {
 });
 
 popolaMensilita(form.elements.mensilita, PARAMETRI_2026.contratto);
+document.querySelector('#aiuto-ral').textContent = `Es. ${ESEMPI_FORMATO}`;
